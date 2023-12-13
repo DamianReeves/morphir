@@ -1,3 +1,8 @@
+# Build Outputs
+out/
+bin/
+obj/
+
 ./.idea
 .fake
 .ionide

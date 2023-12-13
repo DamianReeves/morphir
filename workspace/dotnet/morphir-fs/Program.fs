@@ -1,4 +1,4 @@
 ﻿[<EntryPoint>]
 let main argv =
-    printf "%A" argv
-    0
+  printf "%A" argv
+  0

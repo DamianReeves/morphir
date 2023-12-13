@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "workspace", "workspace", "{45B46318-4B8D-4C43-9B74-7BBA1396636A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "dotnet", "dotnet", "{C4B07CAC-21C4-4309-AAC3-6B632FBD1812}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5388ED35-BBAC-48CE-AA53-A6B6DDC75740}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Morphir.SDK.Core", "workspace\dotnet\src\Morphir.SDK.Core\Morphir.SDK.Core.fsproj", "{0643AC48-5D00-4831-AAB2-3F6D580BAD1E}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Morphir.Core", "workspace\dotnet\src\Morphir.Core\Morphir.Core.fsproj", "{37E31DA6-A31E-4234-BA19-473AC4D7A97A}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Morphir.Tools.WASM", "workspace\dotnet\src\Morphir.Tools.WASM\Morphir.Tools.WASM.fsproj", "{1976F982-8E99-42CA-B62C-DFCC7F06601C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0643AC48-5D00-4831-AAB2-3F6D580BAD1E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0643AC48-5D00-4831-AAB2-3F6D580BAD1E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0643AC48-5D00-4831-AAB2-3F6D580BAD1E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0643AC48-5D00-4831-AAB2-3F6D580BAD1E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{37E31DA6-A31E-4234-BA19-473AC4D7A97A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{37E31DA6-A31E-4234-BA19-473AC4D7A97A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{37E31DA6-A31E-4234-BA19-473AC4D7A97A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{37E31DA6-A31E-4234-BA19-473AC4D7A97A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1976F982-8E99-42CA-B62C-DFCC7F06601C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1976F982-8E99-42CA-B62C-DFCC7F06601C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1976F982-8E99-42CA-B62C-DFCC7F06601C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1976F982-8E99-42CA-B62C-DFCC7F06601C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{C4B07CAC-21C4-4309-AAC3-6B632FBD1812} = {45B46318-4B8D-4C43-9B74-7BBA1396636A}
+		{5388ED35-BBAC-48CE-AA53-A6B6DDC75740} = {C4B07CAC-21C4-4309-AAC3-6B632FBD1812}
+		{0643AC48-5D00-4831-AAB2-3F6D580BAD1E} = {5388ED35-BBAC-48CE-AA53-A6B6DDC75740}
+		{37E31DA6-A31E-4234-BA19-473AC4D7A97A} = {5388ED35-BBAC-48CE-AA53-A6B6DDC75740}
+		{1976F982-8E99-42CA-B62C-DFCC7F06601C} = {5388ED35-BBAC-48CE-AA53-A6B6DDC75740}
+	EndGlobalSection
+EndGlobal
