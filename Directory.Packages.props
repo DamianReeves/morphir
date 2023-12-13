@@ -10,7 +10,7 @@
   <PropertyGroup>
   </PropertyGroup>
   <ItemGroup>
-    <PackageVersion Include="FSharp.Core" Version="7.0.200" />
+    <PackageVersion Include="FSharp.Core" Version="8.0.100" />
     <PackageVersion Include="Thoth.Json.Net" Version="11.0.0" />
   </ItemGroup>
 </Project>

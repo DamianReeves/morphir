@@ -4,9 +4,9 @@
     ".NETStandard,Version=v2.0": {
       "FSharp.Core": {
         "type": "Direct",
-        "requested": "[7.0.200, )",
-        "resolved": "7.0.200",
-        "contentHash": "NmgUnpNH6Zu9B0SPIhojyo38gnPdkdYFYQfbd6zosEH32kbGY/g/Klk7PfOWe1NAe/O1YOMmK9KhwQ2OWsWEbg=="
+        "requested": "[8.0.100, )",
+        "resolved": "8.0.100",
+        "contentHash": "ZOVZ/o+jI3ormTZOa28Wh0tSRoyle1f7lKFcUN61sPiXI7eDZu8eSveFybgTeyIEyW0ujjp31cp7GOglDgsNEg=="
       },
       "NETStandard.Library": {
         "type": "Direct",
@@ -49,7 +49,7 @@
       "morphir.sdk.core": {
         "type": "Project",
         "dependencies": {
-          "FSharp.Core": "[7.0.200, )"
+          "FSharp.Core": "[8.0.100, )"
         }
       }
     },
@@ -57,9 +57,9 @@
     ".NETStandard,Version=v2.1": {
       "FSharp.Core": {
         "type": "Direct",
-        "requested": "[7.0.200, )",
-        "resolved": "7.0.200",
-        "contentHash": "NmgUnpNH6Zu9B0SPIhojyo38gnPdkdYFYQfbd6zosEH32kbGY/g/Klk7PfOWe1NAe/O1YOMmK9KhwQ2OWsWEbg=="
+        "requested": "[8.0.100, )",
+        "resolved": "8.0.100",
+        "contentHash": "ZOVZ/o+jI3ormTZOa28Wh0tSRoyle1f7lKFcUN61sPiXI7eDZu8eSveFybgTeyIEyW0ujjp31cp7GOglDgsNEg=="
       },
       "Thoth.Json.Net": {
         "type": "Direct",
@@ -88,7 +88,7 @@
       "morphir.sdk.core": {
         "type": "Project",
         "dependencies": {
-          "FSharp.Core": "[7.0.200, )"
+          "FSharp.Core": "[8.0.100, )"
         }
       }
     },
@@ -96,9 +96,9 @@
     "net8.0": {
       "FSharp.Core": {
         "type": "Direct",
-        "requested": "[7.0.200, )",
-        "resolved": "7.0.200",
-        "contentHash": "NmgUnpNH6Zu9B0SPIhojyo38gnPdkdYFYQfbd6zosEH32kbGY/g/Klk7PfOWe1NAe/O1YOMmK9KhwQ2OWsWEbg=="
+        "requested": "[8.0.100, )",
+        "resolved": "8.0.100",
+        "contentHash": "ZOVZ/o+jI3ormTZOa28Wh0tSRoyle1f7lKFcUN61sPiXI7eDZu8eSveFybgTeyIEyW0ujjp31cp7GOglDgsNEg=="
       },
       "Microsoft.NET.ILLink.Tasks": {
         "type": "Direct",
@@ -133,7 +133,7 @@
       "morphir.sdk.core": {
         "type": "Project",
         "dependencies": {
-          "FSharp.Core": "[7.0.200, )"
+          "FSharp.Core": "[8.0.100, )"
         }
       }
     },
