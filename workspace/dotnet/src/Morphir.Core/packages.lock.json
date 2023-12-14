@@ -53,7 +53,6 @@
         }
       }
     },
-    ".NETStandard,Version=v2.0/wasi-wasm": {},
     ".NETStandard,Version=v2.1": {
       "FSharp.Core": {
         "type": "Direct",
@@ -92,19 +91,12 @@
         }
       }
     },
-    ".NETStandard,Version=v2.1/wasi-wasm": {},
     "net8.0": {
       "FSharp.Core": {
         "type": "Direct",
         "requested": "[8.0.100, )",
         "resolved": "8.0.100",
         "contentHash": "ZOVZ/o+jI3ormTZOa28Wh0tSRoyle1f7lKFcUN61sPiXI7eDZu8eSveFybgTeyIEyW0ujjp31cp7GOglDgsNEg=="
-      },
-      "Microsoft.NET.ILLink.Tasks": {
-        "type": "Direct",
-        "requested": "[8.0.0, )",
-        "resolved": "8.0.0",
-        "contentHash": "B3etT5XQ2nlWkZGO2m/ytDYrOmSsQG1XNBaM6ZYlX5Ch/tDrMFadr0/mK6gjZwaQc55g+5+WZMw4Cz3m8VEF7g=="
       },
       "Thoth.Json.Net": {
         "type": "Direct",
@@ -136,7 +128,6 @@
           "FSharp.Core": "[8.0.100, )"
         }
       }
-    },
-    "net8.0/wasi-wasm": {}
+    }
   }
 }
