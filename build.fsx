@@ -1,4 +1,5 @@
 #r "nuget: Fun.Build, 1.0.5"
+#r "nuget:Fake.Tools.Git, 6.0.0"
 
 open Fun.Build
 open Fun.Build.Internal
@@ -74,5 +75,16 @@ pipeline "wasm" {
 
   runIfOnlySpecified
 }
+
+pipeline "elm" {
+  description "Build Elm packages/components"
+
+  stage "Clone morphir-elm" {
+    run "git clone "
+  }
+
+  runIfOnlySpecified
+}
+
 
 tryPrintPipelineCommandHelp ()
