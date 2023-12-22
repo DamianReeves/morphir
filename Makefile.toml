@@ -1,0 +1,2 @@
+[tasks.build-scala-sdks]
+script = ["cd bindings/scala", "./mill sdk.__.compile"]

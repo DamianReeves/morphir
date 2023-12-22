@@ -3,3 +3,10 @@
 .ionide
 
 .vscode/
+
+# Scala IDE related
+.metals/
+.bloop/
+.bsp/
+
+target/
