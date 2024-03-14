@@ -8,6 +8,7 @@ open WebSharper.UI.Server
 type EndPoint =
     | [<EndPoint "/">] Home
     | [<EndPoint "/about">] About
+    | [<EndPoint "/sandbox/encode/name">] EncodeName of string
 
 module Templating =
     open WebSharper.UI.Html
@@ -34,6 +35,8 @@ module Site =
     open WebSharper.UI.Html
 
     open type WebSharper.UI.ClientServer
+    open Morphir.IR
+    open Morphir.IR.Codec
 
     let HomePage ctx =
         Templating.Main
@@ -50,9 +53,24 @@ module Site =
             [ h1 [] [ text "About" ]
               p [] [ text "This is a template WebSharper client-server application." ] ]
 
+    let EncodeNameApi ctx nameStr =
+        let name = nameStr |> Name.fromString
+        let encodedName = name |> Name.toJson
+
+        Content.Custom(
+            Status = Http.Status.Ok,
+            Headers = [ Http.Header.Custom "Content-Type" "application/json" ],
+            WriteBody =
+                fun stream ->
+                    let json = Name.toJson name
+                    let bytes = System.Text.Encoding.UTF8.GetBytes(json)
+                    stream.Write(bytes, 0, bytes.Length)
+        )
+
     [<Website>]
     let Main =
         Application.MultiPage(fun ctx endpoint ->
             match endpoint with
             | EndPoint.Home -> HomePage ctx
-            | EndPoint.About -> AboutPage ctx)
+            | EndPoint.About -> AboutPage ctx
+            | EndPoint.EncodeName name -> EncodeNameApi ctx name)
