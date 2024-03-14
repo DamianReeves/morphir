@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Morphir.Server</RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Remoting.fs" />
+    <Compile Include="Client.fs" />
+    <Compile Include="Site.fs" />
+    <Compile Include="Program.fs" />
+    <Folder Include="wwwroot\" />
+    <Content Include="Main.html" CopyToPublishDirectory="Always" />
+    <None Include="wsconfig.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Morphir.CodeModel\Morphir.CodeModel.fsproj" />
+    <ProjectReference Include="..\Morphir.CodeModel.SystemTextJson\Morphir.CodeModel.SystemTextJson.fsproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="WebSharper" />
+    <PackageReference Include="WebSharper.AspNetCore" />
+    <PackageReference Include="WebSharper.FSharp" />
+    <PackageReference Include="WebSharper.MathJS" />
+    <PackageReference Include="WebSharper.UI" />
+  </ItemGroup>
+</Project>

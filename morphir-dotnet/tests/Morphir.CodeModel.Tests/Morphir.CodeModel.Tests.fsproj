@@ -8,6 +8,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\src\Morphir.CodeModel\Morphir.CodeModel.fsproj" />
     <ProjectReference Include="..\..\src\Morphir.SDK.Testing\Morphir.SDK.Testing.fsproj" />
+    <ProjectReference Include="..\..\src\Morphir.CodeModel.SystemTextJson\Morphir.CodeModel.SystemTextJson.fsproj" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IR\NameTests.fs" />
@@ -26,6 +27,7 @@
     <PackageReference Include="Expecto.FsCheck" />
     <PackageReference Include="FsCheck" />
     <PackageReference Include="FsCheck.Xunit" />
+    <PackageReference Include="FSharp.SystemTextJson" />
     <PackageReference Include="FsUnit" />
     <PackageReference Include="FsUnit.xUnit" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" />

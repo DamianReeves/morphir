@@ -3,6 +3,7 @@ module Morphir.IR.NameTests
 open Morphir.SDK.Testing
 open Morphir.IR
 //open Thoth.Json.Net
+open Morphir.IR.Codec
 
 [<Tests>]
 let tests =
@@ -67,6 +68,15 @@ let tests =
 
               assert' [ "value"; "in"; "u"; "s"; "d" ] [ "value"; "in"; "USD" ] ]
 
+    let toJsonTests =
+        describe "toJson" [
+            test "should encode name to json" {
+                let name = Name.fromString "fooBar"
+                let expected = "\"_:foo-bar\""
+                Name.toJson(name)                
+                |> Expect.equal expected
+            }
+        ]
     // let encodeNameTests =
     //     describe "encodeName" [
     //         let assert' inList expectedText =
@@ -88,5 +98,6 @@ let tests =
           toCamelCaseTests
           toSnakeCaseTests
           toHumanWordsTests
+          toJsonTests
           // encodeNameTests
           ]

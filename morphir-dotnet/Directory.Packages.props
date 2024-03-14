@@ -21,6 +21,7 @@
     <PackageVersion Include="FSharp.Core" Version="8.0.101" />
     <PackageVersion Include="FsCheck" Version="2.16.6" />
     <PackageVersion Include="FsCheck.Xunit" Version="2.16.6" />
+    <PackageVersion Include="FSharp.SystemTextJson" Version="1.2.42" />
     <PackageVersion Include="FsUnit" Version="6.0.0" />
     <PackageVersion Include="FsUnit.xUnit" Version="6.0.0" />
     <PackageVersion Include="Fun.Blazor" Version="4.0.8" />
@@ -45,6 +46,11 @@
     <PackageVersion Include="StreamJsonRpc" Version="2.8.28" />
     <PackageVersion Include="System.IO.Abstractions" Version="20.0.15" />
     <PackageVersion Include="Tomlyn" Version="0.17.0" />
+    <PackageVersion Include="WebSharper" Version="6.1.5.317" />
+    <PackageVersion Include="WebSharper.AspNetCore" Version="6.1.5.317" />
+    <PackageVersion Include="WebSharper.FSharp" Version="6.1.5.317" />
+    <PackageVersion Include="WebSharper.MathJS" Version="6.1.5.317" />
+    <PackageVersion Include="WebSharper.UI" Version="6.1.4.317" />
     <PackageVersion Include="xunit" Version="2.6.6" />
     <PackageVersion Include="xunit.runner.visualstudio" Version="2.5.6" />
     <PackageVersion Include="coverlet.collector" Version="6.0.0">
