@@ -32,11 +32,11 @@ and QName =
 and PackageName =
     | PackageName of Path
 
-    static let toPath (PackageName path) : Path = path
-    member this.ToPath() = toPath this
+    static member ToPath(PackageName path) : Path = path
+    member this.ToPath() = PackageName.ToPath this
 
 and ModuleName =
-    | ModuleName of Path:Path
+    | ModuleName of Path: Path
 
     member this.ToPath() =
         match this with
@@ -46,10 +46,10 @@ and QualifiedModuleName = QualifiedModuleName of QName
 
 and FQName = FQName of PackageName: PackageName * ModuleName: ModuleName * LocalName: Name
 
-and [<Struct>]Label<'T> = Label of Name
+and [<Struct>] Label<'T> = Label of Name
 
 module Path =
-    let inline toPath<'T when 'T : (member ToPath: unit -> Path)> (input: 'T) = input.ToPath()
+    let inline toPath<'T when 'T: (member ToPath: unit -> Path)> (input: 'T) = input.ToPath()
 
 module ModuleName =
     [<CompiledName("ToPath")>]

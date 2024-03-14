@@ -100,13 +100,13 @@ and Type =
     | Tuple of Type list
     | Variable of Name: TypeVariableName
 
-    static let (|Unit|_|) =
-        function
-        | Tuple [] -> Some()
-        | _ -> None
+    // let (|Unit|_|) =
+    //     function
+    //     | Tuple [] -> Some()
+    //     | _ -> None
 
     [<TailCall>]
-    static let rec allAnnotations (type_: Type) =
+    static member GetAllAnnotations(type_: Type) =
         let rec loop type_ acc =
             match type_ with
             | Annotated(underlying, ann) -> loop underlying (acc @ ann.All)
@@ -114,7 +114,7 @@ and Type =
 
         loop type_ []
 
-    member this.AllAnnotations = allAnnotations this
+    member this.AllAnnotations = Type.GetAllAnnotations this
     static member Unit: Type = Tuple []
 
 and TypeDefinition =
@@ -125,16 +125,19 @@ and TypeDefinition =
     | AnnotatedTypeDefinition of Underlying: TypeDefinition * TypeLevelAnnotations
 
     [<TailCall>]
-    static let rec typeVars =
-        function
-        | TypeAliasDefinition(vars, _) -> vars
-        | OpaqueTypeDefinition(vars, _) -> vars
-        | VariantTypeDefinition(vars, _) -> vars
-        | DerivedTypeDefinition(vars, _) -> vars
-        | AnnotatedTypeDefinition(underlying, _) -> typeVars underlying
+    static member GetTypeVars definition =
+        let rec loop =
+            function
+            | TypeAliasDefinition(vars, _) -> vars
+            | OpaqueTypeDefinition(vars, _) -> vars
+            | VariantTypeDefinition(vars, _) -> vars
+            | DerivedTypeDefinition(vars, _) -> vars
+            | AnnotatedTypeDefinition(underlying, _) -> loop underlying
+
+        loop definition
 
     [<TailCall>]
-    static let rec allAnnotations (typeDef: TypeDefinition) =
+    static member GetAllAnnotations(typeDef: TypeDefinition) =
         let rec loop typeDef acc =
             match typeDef with
             | AnnotatedTypeDefinition(underlying, ann) -> loop underlying (acc @ ann.All)
@@ -144,8 +147,8 @@ and TypeDefinition =
 
         loop typeDef []
 
-    member this.AllAnnotations = allAnnotations this
-    member this.TypeVars = typeVars this
+    member this.AllAnnotations = TypeDefinition.GetAllAnnotations this
+    member this.TypeVars = TypeDefinition.GetTypeVars this
 
 and TypeSpecification =
     | TypeAliasSpecification of TypeVars: TypeVariableName list * TypeExpr: Type
@@ -206,10 +209,10 @@ and Value =
     | AnnotatedValue of Value * ValueLevelAnnotations
 
     //static member Scalar(primitive: PrimitiveValue) : Value = AnnotatedValue(Primitiveprimitive, )
-    static let (|Unit|_|) =
-        function
-        | Tuple [] -> Some()
-        | _ -> None
+    // static let (|Unit|_|) =
+    //     function
+    //     | Tuple [] -> Some()
+    //     | _ -> NoneV
 
     static member Int8(input: int8) : Value = Primitive(Int8 input)
     static member Unit: Value = Tuple []
@@ -222,11 +225,6 @@ and Expr =
     | Tuple of Expr list * Annotations: Annotation list
     | Variable of VariableName * Annotations: Annotation list
 
-    static let ifThenElse (condition: Expr) (thenBranch: Expr) (elseBranch: Expr) : Expr =
-        IfThenElse(condition, thenBranch, elseBranch, [])
-
-    static let variable (name: VariableName) : Expr = Variable(name, [])
-    static let unit: Expr = Tuple([], [])
     static member Unit: Expr = Tuple([], [])
 
 and Ast =
@@ -254,7 +252,7 @@ and Exportable<'T> =
         | NotExported _ -> ExportedFlag.NotExported
 
 and IntrinsicType =
-    static let unit = Type.Tuple []
+    static member Unit = Type.Tuple []
 
 module Exportable =
     let (|Underlying|) (exportable: Exportable<'T>) : 'T =
@@ -272,3 +270,10 @@ module Exportable =
         | "true" -> Some true
         | "false" -> Some false
         | _ -> None
+
+module Expr =
+    let ifThenElse (condition: Expr) (thenBranch: Expr) (elseBranch: Expr) : Expr =
+        IfThenElse(condition, thenBranch, elseBranch, [])
+
+    let variable (name: VariableName) : Expr = Variable(name, [])
+    let unit: Expr = Tuple([], [])

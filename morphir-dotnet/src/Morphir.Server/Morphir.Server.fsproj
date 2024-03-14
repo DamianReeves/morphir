@@ -15,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Morphir.CodeModel\Morphir.CodeModel.fsproj" />
     <ProjectReference Include="..\Morphir.CodeModel.SystemTextJson\Morphir.CodeModel.SystemTextJson.fsproj" />
+    <ProjectReference Include="..\Morphir.SDK\Morphir.SDK.fsproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="WebSharper" />

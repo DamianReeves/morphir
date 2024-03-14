@@ -4,14 +4,22 @@ open System
 
 type Location =
     | Local of Path: string
-    | Remote of LocationUri : Uri
+    | Remote of LocationUri: Uri
+
+module private HostConfigurationInternal =
+
+    let countVowelsExtensionLocation =
+        Uri("https://github.com/extism/plugins/releases/latest/download/count_vowels.wasm")
+        |> Remote
 
 type HostConfiguration =
     { Extensions: HostExtensionsConfiguration }
-    static let countVowelsExtensionLocation = Uri("https://github.com/extism/plugins/releases/latest/download/count_vowels.wasm") |> Remote
-    static member Default = { Extensions = {ExtensionsSearchLocations = [countVowelsExtensionLocation] } }
+
+    static member Default =
+        { Extensions = { ExtensionsSearchLocations = [ HostConfigurationInternal.countVowelsExtensionLocation ] } }
+
 and HostExtensionsConfiguration =
     { ExtensionsSearchLocations: Location list }
-    
+
 module HostConfiguration =
     let Default = HostConfiguration.Default
