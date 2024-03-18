@@ -4,6 +4,7 @@
     <RootNamespace>Morphir.Server</RootNamespace>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="WebSharperExtensions.fs" />
     <Compile Include="Remoting.fs" />
     <Compile Include="Client.fs" />
     <Compile Include="Site.fs" />

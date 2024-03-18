@@ -45,6 +45,7 @@
     <PackageVersion Include="Spectre.Console.Json" Version="0.48.0" />
     <PackageVersion Include="StreamJsonRpc" Version="2.8.28" />
     <PackageVersion Include="System.IO.Abstractions" Version="20.0.15" />
+    <PackageVersion Include="System.IO.Pipelines" Version="8.0.0" />
     <PackageVersion Include="Tomlyn" Version="0.17.0" />
     <PackageVersion Include="WebSharper" Version="6.1.5.317" />
     <PackageVersion Include="WebSharper.AspNetCore" Version="6.1.5.317" />

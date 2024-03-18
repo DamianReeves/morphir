@@ -10,8 +10,10 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="FSharp.Core" />
+    <PackageReference Include="WebSharper" />
+    <PackageReference Include="WebSharper.FSharp" />
   </ItemGroup>
-  <ItemGroup>
+  <ItemGroup>    
     <Compile Include="SDK\Predef.fs" />
     <Compile Include="SDK\Comparison.fs" />
     <Compile Include="SDK\Basics.fs" />
@@ -27,5 +29,7 @@
     <Compile Include="SDK\Extensions.fs" />
     <Compile Include="SDK\Dict.fs" />
     <Compile Include="SDK\Tuple.fs" />
+    <Content Include="wsconfig.json" />
+    <None Include="wsconfig.json" />
   </ItemGroup>
 </Project>

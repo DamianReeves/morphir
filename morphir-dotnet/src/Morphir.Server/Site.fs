@@ -9,6 +9,7 @@ type EndPoint =
     | [<EndPoint "/">] Home
     | [<EndPoint "/about">] About
     | [<EndPoint "/sandbox/encode/name">] EncodeName of string
+    | [<EndPoint "/api/sandbox/websharper-json">] WebSharperJson of string 
 
 module Templating =
     open WebSharper.UI.Html
@@ -37,6 +38,7 @@ module Site =
     open type WebSharper.UI.ClientServer
     open Morphir.IR
     open Morphir.IR.Codec
+    module J = WebSharper.Core.Json
 
     let HomePage ctx =
         Templating.Main
@@ -69,8 +71,16 @@ module Site =
 
     [<Website>]
     let Main =
+        let encoder =  { new J.Encoder<string> with
+            member Encode : json =
+                J.Encoded.Array [ J.Encoded.Lift (J.Value.String json)]
+        }
+        
         Application.MultiPage(fun ctx endpoint ->
             match endpoint with
             | EndPoint.Home -> HomePage ctx
             | EndPoint.About -> AboutPage ctx
-            | EndPoint.EncodeName name -> EncodeNameApi ctx name)
+            | EndPoint.EncodeName name -> EncodeNameApi ctx name
+            | EndPoint.WebSharperJson json ->
+                Content.morphirJson encoder json
+        )

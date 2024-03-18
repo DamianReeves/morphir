@@ -1,17 +1,22 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.1; net6.0</TargetFrameworks>
     <RootNamespace>Morphir</RootNamespace>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="IR\Codecs\Json.fs" />
+    <Compile Include="IR\Codecs\Json\Json.fs" />
     <Compile Include="IR\Codec.fs" />
+    <None Include="wsconfig.json" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Morphir.CodeModel\Morphir.CodeModel.fsproj" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FSharp.SystemTextJson" />
+    <PackageReference Include="System.IO.Pipelines" />
+    <PackageReference Include="WebSharper" />
+    <PackageReference Include="WebSharper.FSharp" />
+    
   </ItemGroup>
 </Project>

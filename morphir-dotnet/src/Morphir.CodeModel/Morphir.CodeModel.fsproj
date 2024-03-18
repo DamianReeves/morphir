@@ -9,6 +9,8 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FSharp.Core" />
+    <PackageReference Include="WebSharper" />
+    <PackageReference Include="WebSharper.FSharp" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Pattern.fs" />
@@ -38,5 +40,6 @@
     <Compile Include="CodeModel\versioning.fs" />
     <Compile Include="CodeModel\naming.fs" />
     <Compile Include="CodeModel\codeModel.fs" />
+    <None Include="wsconfig.json" />
   </ItemGroup>
 </Project>
