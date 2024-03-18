@@ -7,24 +7,8 @@ open System.Text
 open System.Text.Json
 open System.Text.Json.Serialization
 open Morphir.IR
+open Morphir.IR.Codecs
 
-type MorphirJsonFormatVersion =
-    | V3
-    | V5
-
-    static member Default = V3
-
-type MorphirJsonOptions =
-    { FormatVersion: MorphirJsonFormatVersion }
-
-    static member Default = { FormatVersion = MorphirJsonFormatVersion.Default }
-
-    member o.WriteNamesAsArrays =
-        match o.FormatVersion with
-        | MorphirJsonFormatVersion.V3 -> true
-        | MorphirJsonFormatVersion.V5 -> false
-
-    member o.WriteNamesAsStrings = not o.WriteNamesAsArrays
 
 type MorphirJsonIRWriter private (options: MorphirJsonOptions, streamOrWriter: Choice<Stream, IBufferWriter<Byte>>) =
     let writer =
@@ -32,29 +16,41 @@ type MorphirJsonIRWriter private (options: MorphirJsonOptions, streamOrWriter: C
         | Choice1Of2(stream) -> new Utf8JsonWriter(stream)
         | Choice2Of2(writer) -> new Utf8JsonWriter(writer)
 
-    let sb = new StringBuilder()        
+    let sb = new StringBuilder()
+
+    new(options: MorphirJsonOptions, stream: Stream) = MorphirJsonIRWriter(options, Choice1Of2(stream))
+    new(options: MorphirJsonOptions, writer: IBufferWriter<Byte>) = MorphirJsonIRWriter(options, Choice2Of2(writer))
+
+    static member CreateFromContext(context:MorphirIRWriterContext, stream:Stream): MorphirJsonIRWriter =
+        let options = context.Properties.GetOrDefault<MorphirJsonOptions>(ContextProperties.MorphirJsonOptions, MorphirJsonOptions.Default)
+        new MorphirJsonIRWriter(options, stream)
 
     member this.WriteStringValue(value: string) = failwith "todo"
 
-    member this.WriteStartName() = 
+    member this.WriteStartName() =
         if options.WriteNamesAsArrays then
             writer.WriteStartArray()
         else
             sb.Clear() |> ignore
 
-    member this.WriteEndName() = 
+    member this.WriteEndName() =
         if options.WriteNamesAsArrays then
             writer.WriteEndArray()
         else
             writer.WriteStringValue(sb.ToString())
 
     interface MorphirIRWriter with
-        member this.WriteEndName() = this.WriteEndName()
-        member this.WriteStartName() = this.WriteStartName()
-        member this.WriteStringValue(value) = this.WriteStringValue(value)
+        member this.WriteEndName(context) = this.WriteEndName()
+        member this.WriteStartName(context) = this.WriteStartName()
+        member this.WriteStringValue context value = this.WriteStringValue(value)
+
+        member this.WriteVariable (arg1: MorphirIRWriterContext) (arg2: Morphir.IR.Name.Name) : unit =
+            failwith "Not Implemented"
 
 module Name =
     open Morphir.IR.Name
+
+    let private DefaultOptions = JsonFSharpOptions.Default
 
     let writeJsonToWriter (writer: Utf8JsonWriter) (name: Name) =
         writer.WriteStartArray()
@@ -65,7 +61,7 @@ module Name =
         use writer = new Utf8JsonWriter(stream, options)
         writeJsonToWriter writer name
 
-    let toJsonWithOptions (name: Name) (options: JsonFSharpOptions) =
+    let toJsonWithOptions (name: Name) (options: MorphirJsonOptions) =
         use stream = new IO.MemoryStream()
         use writer = new Utf8JsonWriter(stream)
         writeJsonToWriter writer name
@@ -73,7 +69,7 @@ module Name =
         Encoding.UTF8.GetString(stream.ToArray())
 
     let inline toJson (name: Name) =
-        toJsonWithOptions name Json.DefaultJsonOptions
+        toJsonWithOptions name MorphirJsonOptions.Default
 
 
 // let writeJsonToStreamAsync
@@ -81,5 +77,5 @@ module Name =
 //     (options: JsonWriterOptions)
 //     (stream: IO.Stream)
 //     =
-    //     use writer = new Utf8JsonWriter(stream, options)
+//     use writer = new Utf8JsonWriter(stream, options)
 //     f value writer

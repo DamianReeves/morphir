@@ -9,6 +9,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="FSharp.Core" />
+    <PackageReference Include="System.IO.Pipelines" />
     <PackageReference Include="WebSharper" />
     <PackageReference Include="WebSharper.FSharp" />
   </ItemGroup>
@@ -16,6 +17,8 @@
     <Compile Include="Pattern.fs" />
     <Compile Include="Extensions\Strings.fs" />
     <Compile Include="Extensions\StringBuffer.fs" />
+    <Compile Include="IR\Codecs.Json.fs" />
+    <Compile Include="IR\ContextProperties.fs" />
     <Compile Include="IR\AccessControlled.fs" />
     <Compile Include="IR\Documented.fs" />
     <Compile Include="IR\KindOfName.fs" />
@@ -33,6 +36,8 @@
     <Compile Include="IR\Package.fs" />
     <Compile Include="IR\Distribution.fs" />
     <Compile Include="IR\IR.fs" />
+    <Compile Include="IR\writer.fs" />
+    <Compile Include="IR\Codecs\Json\Codecs.fs" />
     <Compile Include="IR\Predef.fs" />
     <Compile Include="IR\SDK\Common.fs" />
     <Compile Include="IR\SDK\Basics.fs" />

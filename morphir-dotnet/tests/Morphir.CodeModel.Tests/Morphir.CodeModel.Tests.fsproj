@@ -17,6 +17,7 @@
     <Compile Include="IR\PathBuilderTests.fs" />
     <Compile Include="IR\QNameTests.fs" />
     <Compile Include="IR\TypeTests.fs" />
+    <Compile Include="IR\Codecs\Json\MorphirIRWriterContextTests.fs" />
     <Compile Include="CodeModelTests.fs" />
     <Compile Include="Utils\StringTests.fs" />
     <Compile Include="Main.fs" />

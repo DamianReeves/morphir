@@ -10,6 +10,9 @@
 // limitations under the License.
 namespace Morphir.IR
 
+open Morphir.IR.Codecs
+open Morphir.IR.Codecs.Json
+
 module Name =
     open Morphir.SDK.Maybe
     open Morphir.SDK
@@ -19,6 +22,17 @@ module Name =
         | Name of Parts: string list
 
         static member inline FromList(words: string list) : Name = Name words
+
+        static member WriteJsonTo(name: Name, context: MorphirIRWriterContext, writer: MorphirIRWriter) =
+            let jsonOptions = getMorphirJsonOptions context
+
+            if jsonOptions.WriteNamesAsArrays then
+                writer.WriteStartName context
+                name |> toList |> List.iter (fun part -> writer.WriteStringValue context part)
+                writer.WriteEndName context
+            else
+                let formattedName = name |> Name.toKebabCase
+                writer.WriteStringValue context $"_:{formattedName}"
 
         static member PartsFromString(input: string) : string list =
             let wordPattern =
@@ -74,6 +88,7 @@ module Name =
         process' [] [] words
 
     let toSnakeCase name = name |> toHumanWords |> String.join "_"
+    let toKebabCase name = name |> toHumanWords |> String.join "-"
 
 open Name
 
