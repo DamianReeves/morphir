@@ -50,6 +50,8 @@ Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Morphir.SDK.Testing", "src\
 EndProject
 Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "Morphir.CodeModel.SystemTextJson", "src\Morphir.CodeModel.SystemTextJson\Morphir.CodeModel.SystemTextJson.fsproj", "{04553186-8BFF-4B03-9ED9-1F137D12A7C0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Morphir.CodeModel.CSharp.Tests", "tests\Morphir.CodeModel.CSharp.Tests\Morphir.CodeModel.CSharp.Tests.csproj", "{EEA96CBE-BE47-4188-8BE0-BCC813EA000B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,6 +78,7 @@ Global
 		{FEE25C7C-494D-428A-98C2-E9E10D672DF8} = {DD3E9FA3-B118-4EBD-9FCA-9EC21E3124E4}
 		{954141FE-9875-4B17-90B8-3ACE2D1A7459} = {279EB2E8-1462-453A-A86A-C33B2CE3CE9D}
 		{04553186-8BFF-4B03-9ED9-1F137D12A7C0} = {279EB2E8-1462-453A-A86A-C33B2CE3CE9D}
+		{EEA96CBE-BE47-4188-8BE0-BCC813EA000B} = {DD3E9FA3-B118-4EBD-9FCA-9EC21E3124E4}
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{746DAF25-6F6F-4A99-AE56-435ADF5D0B14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -138,5 +141,9 @@ Global
 		{04553186-8BFF-4B03-9ED9-1F137D12A7C0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{04553186-8BFF-4B03-9ED9-1F137D12A7C0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{04553186-8BFF-4B03-9ED9-1F137D12A7C0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEA96CBE-BE47-4188-8BE0-BCC813EA000B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEA96CBE-BE47-4188-8BE0-BCC813EA000B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEA96CBE-BE47-4188-8BE0-BCC813EA000B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEA96CBE-BE47-4188-8BE0-BCC813EA000B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

@@ -9,6 +9,14 @@ type Version =
     | ThreePartVersion of Major: int * Minor: int * Patch: int
     | PreReleaseVersion of Major: int * Minor: int * Patch: int * PreRelease: string * Build: string option
 
+    member x.Major() =
+        match x with
+        | MajorVersion major -> major
+        | MajorMinorVersion(major, _) -> major
+        | ThreePartVersion(major, _, _) -> major
+        | FullSemanticVersion(major, _, _, _, _) -> major
+        | PreReleaseVersion(major, _, _, _, _) -> major
+
 and SemanticVersion =
     { Major: int
       Minor: int
@@ -34,8 +42,6 @@ type VersioningError =
     | InvalidPreRelease of string
     | InvalidBuild of string
     | InvalidVersion of PartialVersion
-
-
 
 let partialVersionToVersion (partialVersion: PartialVersion) : Result<Version, VersioningError> =
     match partialVersion.Tupled() with

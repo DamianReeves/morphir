@@ -17,6 +17,13 @@
     <Compile Include="Pattern.fs" />
     <Compile Include="Extensions\Strings.fs" />
     <Compile Include="Extensions\StringBuffer.fs" />
+    <Compile Include="CodeModel\versioning.fs" />
+    <Compile Include="CodeModel\TypeInfo.fs" />
+    <Compile Include="Settings.fs" />
+    <Compile Include="Codecs\MorphirFormatOptions.fs" />
+    <Compile Include="CodeModel\Graph\Types.fs" />
+    <Compile Include="Codecs\IMorphirWriter.fs" />
+    <Compile Include="Codecs\Json\Prelude.fs" />
     <Compile Include="IR\Codecs.Json.fs" />
     <Compile Include="IR\ContextProperties.fs" />
     <Compile Include="IR\AccessControlled.fs" />
@@ -42,7 +49,6 @@
     <Compile Include="IR\SDK\Common.fs" />
     <Compile Include="IR\SDK\Basics.fs" />
     <Compile Include="IR\SDK\String.fs" />
-    <Compile Include="CodeModel\versioning.fs" />
     <Compile Include="CodeModel\naming.fs" />
     <Compile Include="CodeModel\codeModel.fs" />
     <None Include="wsconfig.json" />
