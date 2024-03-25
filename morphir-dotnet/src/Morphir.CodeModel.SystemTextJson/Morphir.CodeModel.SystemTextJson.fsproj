@@ -5,6 +5,8 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Codecs\SystemTextJson\FleeceExtensions.fs" />
+    <Compile Include="Codecs\SystemTextJson\SystemTextJson.fs" />
     <Compile Include="IR\Codecs\Json\Json.fs" />
     <Compile Include="IR\Codec.fs" />
     <None Include="wsconfig.json" />
@@ -13,10 +15,10 @@
     <ProjectReference Include="..\Morphir.CodeModel\Morphir.CodeModel.fsproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Fleece.SystemTextJson" />
     <PackageReference Include="FSharp.SystemTextJson" />
     <PackageReference Include="System.IO.Pipelines" />
     <PackageReference Include="WebSharper" />
     <PackageReference Include="WebSharper.FSharp" />
-    
   </ItemGroup>
 </Project>

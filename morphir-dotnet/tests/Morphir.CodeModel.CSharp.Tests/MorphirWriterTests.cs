@@ -1,3 +1,5 @@
+using Morphir.Codecs;
+
 namespace Morphir
 {
 
@@ -7,6 +9,7 @@ namespace Morphir
         public void Test1()
         {
             IMorphirWriter writer = null;
+            
         }
     }
 }

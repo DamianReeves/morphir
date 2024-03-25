@@ -15,6 +15,7 @@
     <PackageReference Include="Argu" />
     <PackageReference Include="Extism.runtime.all" />
     <PackageReference Include="Extism.Sdk" />
+    <PackageReference Include="Fleece" />
     <PackageReference Include="Microsoft.Extensions.Hosting" />
     <PackageReference Include="SemanticVersioning" />
     <PackageReference Include="System.IO.Abstractions" />

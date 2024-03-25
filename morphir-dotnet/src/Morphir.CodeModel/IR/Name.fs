@@ -19,6 +19,7 @@ module Name =
     open Morphir.SDK
     open Morphir.Codecs
     open Morphir.CodeModel
+    open Fleece
 
     [<Struct>]
     type Name =
@@ -75,6 +76,17 @@ module Name =
                 writer.WriteStringValue $"_:{formattedName}"
             | NameEncodingMode.AsIri -> failwith "Not implemented"
 
+        static member ToJson(name: Name, options: MorphirJsonFormatOptions) =
+            match options.NameEncodingMode with
+            | NameEncodingMode.AsArray -> Name.ToList name |> List.map (fun part -> JString part) |> JArray
+            | NameEncodingMode.AsIdentifier -> JString(name |> Name.ToKebabCase)
+            | NameEncodingMode.AsIri ->
+                JString($"https://morphir.finos.org/schemas/#Name?text={name |> Name.ToKebabCase}")
+
+
+        static member ToJson(name) =
+            Name.ToJson(name, MorphirJsonFormatOptions.Default)
+
         static member PartsFromString(input: string) : string list =
             let wordPattern =
                 Regex.fromString "([a-zA-Z][a-z]*|[0-9]+)" |> Maybe.withDefault Regex.never
@@ -102,7 +114,7 @@ module Name =
     let inline toCamelCase (name: Name) = Name.ToCamelCase name
     let inline toHumanWords (name: Name) : List<string> = Name.ToHumanWords name
     let inline toSnakeCase (name: Name) : string = Name.ToSnakeCase name
-    let inline toKebabCase (name: Name) : string = Name.ToKebabCase name
+    let inline toKebabCase (name: Name) : string = Name.ToKebabCase name    
 
 open Name
 

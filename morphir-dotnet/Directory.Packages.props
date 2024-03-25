@@ -18,6 +18,8 @@
     <PackageVersion Include="Extism.runtime.all" Version="1.1.0" />
     <PackageVersion Include="Extism.Pdk" Version="1.0.1" />
     <PackageVersion Include="Extism.Sdk" Version="1.1.0" />
+    <PackageVersion Include="Fleece" Version="0.10.0" />
+    <PackageVersion Include="Fleece.SystemTextJson" Version="0.10.0" />
     <PackageVersion Include="FSharp.Core" Version="8.0.101" />
     <PackageVersion Include="FsCheck" Version="2.16.6" />
     <PackageVersion Include="FsCheck.Xunit" Version="2.16.6" />

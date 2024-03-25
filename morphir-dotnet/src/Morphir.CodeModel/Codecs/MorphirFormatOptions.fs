@@ -27,6 +27,10 @@ and MorphirJsonFormatOptions =
     { Version: Version
       NameEncodingMode: NameEncodingMode }
 
+    static member Default =
+        { Version = (Version.MajorVersion 3)
+          NameEncodingMode = AsArray }
+
 and NameEncodingMode =
     | AsArray
     | AsIdentifier

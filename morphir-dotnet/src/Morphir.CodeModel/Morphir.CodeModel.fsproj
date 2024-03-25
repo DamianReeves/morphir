@@ -8,6 +8,7 @@
     <ProjectReference Include="..\Morphir.SDK.Core\Morphir.SDK.Core.fsproj" />
   </ItemGroup>
   <ItemGroup>
+    <PackageReference Include="Fleece" />
     <PackageReference Include="FSharp.Core" />
     <PackageReference Include="System.IO.Pipelines" />
     <PackageReference Include="WebSharper" />

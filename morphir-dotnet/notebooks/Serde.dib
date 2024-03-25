@@ -1,0 +1,51 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"},{"aliases":[],"languageName":"fsharp","name":"fsharp"}]}}
+
+#!fsharp
+
+module Morphir =
+    module Serdes = 
+        open System
+
+        type Serialize<'Self> =
+            abstract member Serialize<'S,'TOk,'TErr 
+                when 'S :> Serializer<'S, 'TOk,'TErr>> 
+                    : serializer:'S -> Result<'TOk,'TErr>
+        and Serializer<'S,'TOk,'TErr> =
+            abstract SerializeBoolean: value:bool -> Result<'TOk,'TErr>
+            
+
+                  
+
+#!fsharp
+
+open Morphir.Serdes
+module Morphir =
+    module Serdes =        
+        type DemoSerializer() =
+            interface Serializer<DemoSerializer,string,string> with
+                member s.SerializeBoolean(value:bool) = $"(Boolean {value})" |> Ok
+        type Demo =
+            static member inline toDemoFormat (serializer: 'S :> Serializer<'S,string,string>) (value:'Serialize when 'Serialize :> Serialize<'Serialize>) =
+                value.Serialize(serializer)
+
+#!fsharp
+
+open Morphir.Serdes
+[<Struct>]
+type YesNo =
+    | Yes
+    | No
+    static member Serialize(self:YesNo, serializer: 'S when 'S :> Serializer<'S,'ok,'err>) =
+        match self with
+        | Yes -> serializer.SerializeBoolean(true)
+        | No -> serializer.SerializeBoolean(false)
+    interface Serialize<YesNo> with
+        member this.Serialize(serializer) = YesNo.Serialize(this, serializer)
+
+#!fsharp
+
+let aVal = YesNo.Yes
+let demoSerializer = DemoSerializer()
+aVal |> Demo.toDemoFormat demoSerializer

@@ -1,0 +1,104 @@
+#!meta
+
+{"kernelInfo":{"defaultKernelName":"csharp","items":[{"aliases":[],"name":"csharp"},{"aliases":[],"languageName":"fsharp","name":"fsharp"}]}}
+
+#!fsharp
+
+#r "nuget: TypeShape, 10.0.0"
+open TypeShape.HKT
+open TypeShape.Core
+open TypeShape.Core.Utils 
+
+module Morphir =
+    module Serdes =        
+        type Serialize<'T> =
+            abstract Serialize<'T, 'S, 'Context, 'Output, 'Err
+                when 'S :> Serializer<'S, 'Context, 'Output, 'Err> > : value:'T ->  serializer : 'S -> Result<'Output,'Err>
+
+        and Serializer<'S, 'Context, 'Output, 'Err> =
+            abstract WriteBoolean : bool -> Result<'Output, 'Err>
+            abstract WriteString : string -> Result<'Output, 'Err>
+
+        type Serialize = 
+            static member Assign(_: App<Serialize, 'a>, _ : Serialize<'a>) = ()
+
+            
+
+#!fsharp
+
+type Cell =
+    abstract Accept : CellFunc<'R> -> 'R
+
+and Cell<'T> = { Items : 'T list }
+with 
+    interface Cell with
+      member cell.Accept f = f.Invoke<'T> cell
+
+and CellFunc<'R> =
+    abstract Invoke<'T> : Cell<'T> -> 'R
+
+let pack (cell : Cell<'T>) = cell :> Cell
+let unpack (cell : Cell) (f : CellFunc<'R>) : 'R = cell.Accept f
+
+let getLength cell =
+    unpack cell 
+        { new CellFunc<int> with 
+            member __.Invoke (cell : Cell<'T>) =
+              List.length cell.Items }
+
+let c1 : Cell = pack { Items = ["value"] }
+let c2 : Cell = pack { Items = [1 .. 100] }
+
+struct (getLength c1, getLength c2)
+
+#!fsharp
+
+open TypeShape.HKT
+
+type IMyTypesBuilder<'F> =
+    inherit IBoolBuilder<'F>
+    inherit IInt32Builder<'F>
+    inherit IStringBuilder<'F>
+
+    inherit IFSharpOptionBuilder<'F>
+    inherit IFSharpListBuilder<'F>
+    inherit ITuple2Builder<'F>
+
+#!fsharp
+
+let mkGenericProgram (builder : IMyTypesBuilder<'F>) =
+    { new IGenericProgram<'F> with
+        member this.Resolve<'a> () : App<'F, 'a> = 
+            match shapeof<'a> with
+            | Fold.Bool builder r -> r
+            | Fold.Int32 builder r -> r
+            | Fold.String builder r -> r
+            | Fold.Tuple2 builder this r -> r
+            | Fold.FSharpOption builder this r -> r
+            | Fold.FSharpList builder this r -> r
+            | _ -> failwithf "I do not know how to fold type %O" typeof<'a> }
+
+#!fsharp
+
+// Higher-Kinded encoding
+type PrettyPrinter =
+    static member Assign(_ : App<PrettyPrinter, 'a>, _ : 'a -> string) = ()
+
+// Implementing the interface
+let prettyPrinterBuilder =
+    { new IMyTypesBuilder<PrettyPrinter> with
+        member _.Bool () = HKT.pack (function false -> "false" | true -> "true")
+        member _.Int32 () = HKT.pack (sprintf "%d")
+        member _.String () = HKT.pack (sprintf "\"%s\"")
+
+        member _.Option (HKT.Unpack elemPrinter) = HKT.pack(function None -> "None" | Some a -> sprintf "Some(%s)" (elemPrinter a))
+        member _.Tuple2 (HKT.Unpack left) (HKT.Unpack right) = HKT.pack(fun (a,b) -> sprintf "(%s, %s)" (left a) (right b))
+        member _.List (HKT.Unpack elemPrinter) = HKT.pack(Seq.map elemPrinter >> String.concat "; " >> sprintf "[%s]") }
+
+#!fsharp
+
+let prettyPrint<'t> : 't -> string = (mkGenericProgram prettyPrinterBuilder).Resolve<'t> () |> HKT.unpack
+
+prettyPrint 42
+prettyPrint (Some false)
+prettyPrint (Some "test", [Some 42; None; Some -1])

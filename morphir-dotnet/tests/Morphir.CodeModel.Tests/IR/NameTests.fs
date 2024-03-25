@@ -5,6 +5,8 @@ open Morphir.IR
 //open Thoth.Json.Net
 open Morphir.IR.Codec
 open Morphir.IR.Codecs.Json
+open Fleece
+open Fleece.SystemTextJson
 
 [<Tests>]
 let tests =
@@ -91,6 +93,12 @@ let tests =
                               let expected = "\"_:foo-bar\""
 
                               MorphirJsonOptions.V5 |> Name.toJsonWithOptions name |> Expect.equal expected
+                          }
+
+                          test "should encode name using Fleece's toJson" {
+                              let name = Name.fromString "MorphirModule"
+                              let expected = "\"_:morphir-module\""
+                              (string (toJson name)) |> Expect.equal expected
                           } ] ] ]
     // let encodeNameTests =
     //     describe "encodeName" [

@@ -11,6 +11,7 @@
     <ProjectReference Include="..\..\src\Morphir.CodeModel.SystemTextJson\Morphir.CodeModel.SystemTextJson.fsproj" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Experiments\CodecExperiments.fs" />
     <Compile Include="IR\NameTests.fs" />
     <Compile Include="IR\NameBuilderTests.fs" />
     <Compile Include="IR\PathTests.fs" />
@@ -26,6 +27,7 @@
     <PackageReference Include="Bogus" />
     <PackageReference Include="Expecto" />
     <PackageReference Include="Expecto.FsCheck" />
+    <PackageReference Include="Fleece.SystemTextJson" />
     <PackageReference Include="FsCheck" />
     <PackageReference Include="FsCheck.Xunit" />
     <PackageReference Include="FSharp.SystemTextJson" />
