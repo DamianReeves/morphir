@@ -1,0 +1,16 @@
+package morphir-ir:name@0.1.0;
+
+interface name {
+    variant run{run(string)}
+
+    variant name {        
+        name(list<run>)
+    }
+
+    from-string: func(input:string) -> name;
+    to-string: func(name:name) ->  string;
+}
+
+world morphir-ir-name {
+    export name;
+}

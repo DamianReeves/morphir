@@ -1,0 +1,7 @@
+tasks:
+  run:
+    command: |
+      cargo run
+    inputs:
+      - "@globs(rustSourceFiles)"
+      - "@files(rustProjectFiles)"

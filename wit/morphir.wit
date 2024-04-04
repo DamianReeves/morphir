@@ -1,0 +1,49 @@
+package morphir:hosting@0.1.0;
+
+interface name {
+    variant run{run(string)}
+
+    variant name {        
+        name(list<run>)
+    }
+
+    from-string: func(input:string): name;
+    to-string: func(name:name): string;
+}
+
+interface types {
+    use name.{name};
+    variant path {
+        path(list<name>)
+    }
+}
+
+interface host-context {
+    resource host {
+        constructor();
+        register-extension: func(name: name);        
+    }
+    host-starting: func();
+}
+
+interface language-frontend-extension {
+    setup: func(config: string);
+    start: func();
+}
+
+interface runtime-execution-engine {
+    setup: func(config: string);
+}
+
+world runtime {
+    export run: func();
+}
+
+world extension {
+    import host-context;
+    export connect: func();
+}
+
+world app {
+    import language-frontend-extension;
+}

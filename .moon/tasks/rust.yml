@@ -1,0 +1,14 @@
+fileGroups:
+  rustSourceFiles:
+    - src/**/*.rs
+  rustProjectFiles:
+    - Cargo.toml
+    - Cargo.lock
+
+tasks:
+  build:
+    command: |
+      cargo build
+    inputs:
+      - "@globs(rustSourceFiles)"
+      - "@files(rustProjectFiles)"
