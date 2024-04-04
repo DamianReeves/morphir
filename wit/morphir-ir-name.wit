@@ -14,3 +14,7 @@ interface name {
 world morphir-ir-name {
     export name;
 }
+
+world app {
+    import name;
+}

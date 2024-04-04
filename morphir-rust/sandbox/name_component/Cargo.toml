@@ -1,0 +1,20 @@
+[package]
+name = "name"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+bitflags = "2.4.2"
+wit-bindgen-rt = "0.20.0"
+
+[lib]
+crate-type = ["cdylib"]
+
+[package.metadata.component]
+package = "morphir-ir-name:name"
+
+[package.metadata.component.target]
+path = "../../../wit/morphir-ir-name.wit"
+world = "morphir-ir-name"
+
+[package.metadata.component.dependencies]

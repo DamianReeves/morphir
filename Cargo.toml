@@ -4,6 +4,8 @@ members = [
     "morphir-rust/packages/codemodel",
     "morphir-rust/packages/cli",
     "morphir-rust/packages/morphir",
+    "morphir-rust/sandbox/name_component",
+    "morphir-rust/sandbox/command",
 ]
 default-members = ["morphir-rust/morphir"]
 
