@@ -1,0 +1,6 @@
+package morphir:extension@0.0.1;
+
+world extension {
+    use morphir:host/types@0.0.1.{workspace-info};
+    
+}

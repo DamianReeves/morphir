@@ -1,18 +1,22 @@
 language: "rust"
 type: "application"
+tags:
+  - "rust-workspace"
+  - "workspace"
 
 env:
   CARGO_TERM_COLOR: "always"
 
 fileGroups:
   sources:
-    - "crates/*/src/**/*"
-    - "crates/*/Cargo.toml"
+    - "morphir-rust/crates/*/src/**/*"
+    - "morphir-rust/main/src/**/*.rs"
+    - "morphir-rust/main/Cargo.toml"
+    - "morphir-rust/crates/*/Cargo.toml"
     - "Cargo.toml"
   tests:
     - "crates/*/benches/**/*"
     - "crates/*/tests/**/*"
-
 #_taskOptions: &options
 #  options:
 #    runInCI: false

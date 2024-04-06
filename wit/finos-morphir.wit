@@ -1,0 +1,5 @@
+package finos:morphir@0.0.1;
+
+world all {
+    include morphir:host/host@0.0.1;
+}

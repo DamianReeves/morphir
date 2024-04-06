@@ -14,7 +14,7 @@ crate-type = ["cdylib"]
 package = "morphir-ir-name:name"
 
 [package.metadata.component.target]
-path = "../../../wit/morphir-ir-name.wit"
+path = "../../../wit/sandbox/morphir-ir-name.wit"
 world = "morphir-ir-name"
 
 [package.metadata.component.dependencies]

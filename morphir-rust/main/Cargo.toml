@@ -23,4 +23,4 @@ clap = { workspace = true, features = [
     "wrap_help",
 ] }
 clap_complete = { workspace = true }
-morphir_codemodel = { path = "../codemodel" }
+morphir_codemodel = { path = "../crates/codemodel" }

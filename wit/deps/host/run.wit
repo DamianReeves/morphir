@@ -1,0 +1,5 @@
+interface run {
+    type on-success-exit-code = s32;
+    type on-failure-exit-code = s32;
+    run: func (args: list<string>) -> result<on-success-exit-code, on-failure-exit-code>;
+}

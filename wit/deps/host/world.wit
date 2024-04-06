@@ -1,0 +1,5 @@
+package morphir:host@0.0.1;
+
+world host {
+    import run;
+}

@@ -1,0 +1,8 @@
+package morphir:host@0.0.1;
+
+interface types {
+    record workspace-info {
+        // The root directory of the workspace
+        workspace-root: string
+    }
+}

@@ -7,7 +7,7 @@ edition = "2021"
 package = "morphir-ir:host"
 
 [package.metadata.component.target]
-path = "../../../wit/morphir-ir-name.wit"
+path = "../../../wit/sandbox/morphir-ir-name.wit"
 world = "app"
 
 [dependencies]

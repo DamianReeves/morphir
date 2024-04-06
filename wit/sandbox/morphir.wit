@@ -1,4 +1,4 @@
-package morphir:hosting@0.1.0;
+package morphir:hosting@0.0.1;
 
 interface name {
     variant run{run(string)}
