@@ -24,3 +24,4 @@ clap = { workspace = true, features = [
 ] }
 clap_complete = { workspace = true }
 morphir_codemodel = { path = "../crates/codemodel" }
+wasmtime = { workspace = true }
